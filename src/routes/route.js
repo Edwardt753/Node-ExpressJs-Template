@@ -1,16 +1,7 @@
 const express = require("express");
 const route = express.Router();
+const { ListStudents } = require("../controller/01_students");
 
-const db = require("../model/index");
-const studentmodels = db.student;
-
-route.get("/login", async (req, res) => {
-  const payload = await studentmodels.findAll();
-  return res.status(200).json({
-    message: true,
-    data: "login page",
-    result: payload,
-  });
-});
+route.get("/student/:id?", ListStudents);
 
 module.exports = route;
