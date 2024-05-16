@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     `Welcome to ${"DDTC"} Service. <br> Version : ${process.env.VERSION}`
   );
 });
-
+//test
 app.use("/", route); //Routing
 
 // Error catcher
