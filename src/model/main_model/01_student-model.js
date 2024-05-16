@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       freezeTableName: true,
       underscored: true,
+      // paranoid:true --Soft delete feature
     }
   );
   return student;

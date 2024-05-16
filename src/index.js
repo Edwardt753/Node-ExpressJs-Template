@@ -5,7 +5,6 @@ const morgan = require("morgan"); //Logger
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-const route = require("./routes/route");
 app.use(express.json()); // Middleware (for parsing JSON data)
 
 app.use(morgan("dev")); //Logging settings
@@ -23,8 +22,10 @@ app.get("/", (req, res) => {
     `Welcome to ${"DDTC"} Service. <br> Version : ${process.env.VERSION}`
   );
 });
-//test
-app.use("/", route); //Routing
+
+//Main Routing
+const route = require("./routes/route");
+app.use("/", route);
 
 // Error catcher
 app.use(function (err, req, res, next) {
