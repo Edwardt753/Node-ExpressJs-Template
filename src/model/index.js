@@ -1,5 +1,5 @@
 require("dotenv").config();
-const dbConfig = require("./database");
+const dbConfig = require("./dbConfig");
 const { Sequelize, Model, DataTypes } = require("sequelize");
 
 // Create Connection Between Sequelize and Database (--> MySQL)
@@ -21,6 +21,7 @@ const sequelize = new Sequelize(
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.student = require("./01_student-model")(sequelize, DataTypes);
 
 // Synchronize Sequelize Model and Actual Datatables in SQL
 db.sequelize
@@ -30,11 +31,11 @@ db.sequelize
   .then(async () => {
     console.log("Synchronization completed.");
     // Call seeder file to seed the database based on .env conditional
-    if (process.env.SEED_DB === "TRUE") {
-      const seeder = require("./seeder/seed");
-      await seeder.seedData(db);
-      console.log("Seeder completed.");
-    }
+    // if (process.env.SEED_DB === "TRUE") {
+    //   const seeder = require("./seeder/seed");
+    //   await seeder.seedData(db);
+    //   console.log("Seeder completed.");
+    // }
   });
 
 module.exports = db;
