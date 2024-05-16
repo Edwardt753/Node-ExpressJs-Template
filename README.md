@@ -1,8 +1,8 @@
 # Node ExpressJS Template
 A template for backend services with REST API
 
-##Install Depedencies
+# Install Depedencies
 npm i
 
-###Run Project
+# Run Project
 npm start
