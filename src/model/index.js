@@ -25,7 +25,7 @@ db.student = require("./main_model/01_student-model")(sequelize, DataTypes);
 
 // Synchronize Sequelize Model and Actual Datatables in SQL
 db.sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   // .sync({ force: true }) // force sync --> remove old and create new
   // .sync({ alter: true }) // sync update --> update existing table only
   .then(async () => {
