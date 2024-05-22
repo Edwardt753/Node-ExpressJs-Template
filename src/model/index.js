@@ -25,9 +25,9 @@ db.student = require("./main_model/01_student-model")(sequelize, DataTypes);
 
 // Synchronize Sequelize Model and Actual Datatables in SQL
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   // .sync({ force: true }) // force sync --> remove old and create new
-  // .sync({ alter: true }) // sync update --> update existing table only
+  //.sync({ alter: true }) // sync update --> update existing table only
   .then(async () => {
     console.log("Synchronization completed.");
     // Call seeder file to seed the database based on .env conditional
