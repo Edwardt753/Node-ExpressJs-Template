@@ -1,12 +1,14 @@
-require("dotenv").config({ path: "./.env" });
+//Import Library
 const express = require("express");
-const cors = require("cors"); //CORS SETTINGS
+const cors = require("cors"); //cors
 const morgan = require("morgan"); //Logger
+require("dotenv").config({ path: "./.env" }); //For env file
 
 const PORT = process.env.PORT || 8080;
 const app = express();
-app.use(express.json()); // Middleware (for parsing JSON data)
 
+//Middleware
+app.use(express.json()); // Middleware (for parsing JSON data)
 app.use(morgan("dev")); //Logging settings
 
 // Cors Setting
@@ -18,9 +20,7 @@ if (process.env.NODE_ENV !== "development") {
 
 // Default Welcome Message
 app.get("/", (req, res) => {
-  res.send(
-    `Welcome to ${"DDTC"} Service. <br> Version : ${process.env.VERSION}`
-  );
+  res.send(`Welcome to Backend Service`);
 });
 
 //Main Routing

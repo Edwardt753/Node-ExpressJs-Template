@@ -1,5 +1,3 @@
-const db = require("./index");
-
 const StudentList = [
   { id: 1, fullname: "Edward", gender: "Male", email: "edward@gmail.com" },
   { id: 2, fullname: "Nicholas", gender: "Male", email: "Nicholas@gmail.com" },
