@@ -2,6 +2,8 @@ require("dotenv").config();
 const dbConfig = require("./dbConfig");
 const { Sequelize, Model, DataTypes } = require("sequelize");
 
+const test = require("./main_model/01_example");
+
 // Create Connection Between Sequelize and Database (--> MySQL)
 const sequelize = new Sequelize(
   dbConfig.database,
@@ -18,14 +20,22 @@ const sequelize = new Sequelize(
 //   console.error("Unable to connect to the database:", error);
 // }
 
-const db = {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-db.student = require("./main_model/01_student-model")(sequelize, DataTypes);
+const main_db = {
+  Sequelize: Sequelize,
+  sequelize: sequelize,
+  test: test(sequelize, DataTypes),
+};
+
+//Settings for Associate
+// Object.keys(main_db).forEach((modelName) => {
+//   if (main_db[modelName].associate) {
+//     main_db[modelName].associate(main_db);
+//   }
+// });
 
 // Synchronize Sequelize Model and Actual Datatables in SQL
-db.sequelize
-  .sync({ force: false })
+main_db.sequelize
+  .sync({ alter: true })
   // .sync({ force: true }) // force sync --> remove old and create new
   //.sync({ alter: true }) // sync update --> update existing table only
   .then(async () => {
@@ -33,9 +43,9 @@ db.sequelize
     // Call seeder file to seed the database based on .env conditional
     if (process.env.SEED_DB === "TRUE") {
       const seeder = require("./seeder");
-      await seeder.seedData(db);
+      await seeder.seedData(main_db);
       console.log("Seeder completed.");
     }
   });
 
-module.exports = db;
+module.exports = main_db;

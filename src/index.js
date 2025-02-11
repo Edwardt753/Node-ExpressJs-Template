@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors"); //cors
 const morgan = require("morgan"); //Logger
+const cookieParser = require("cookie-parser");
 require("dotenv").config({ path: "./.env" }); //For env file
 
 const PORT = process.env.PORT || 8080;
@@ -10,6 +11,7 @@ const app = express();
 //Middleware
 app.use(express.json()); // Middleware (for parsing JSON data)
 app.use(morgan("dev")); //Logging settings
+app.use(cookieParser());
 
 // Cors Setting
 if (process.env.NODE_ENV !== "development") {

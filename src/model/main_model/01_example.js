@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const student = sequelize.define(
-    "students",
+  const test = sequelize.define(
+    "example",
     {
       id: {
         primaryKey: true,
@@ -28,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  return student;
+  return test;
 };
